@@ -2,8 +2,6 @@
 
 This is a responsive, professional website for an independent insurance agency. Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/), the site provides visitors with information about services, a secure way to connect insurance data via Canopy Connect, and contact options.
 
-> Inspired by [arrayinsuranceadvisors.com](https://arrayinsuranceadvisors.com/)
-
 ---
 
 ## 📦 Features
