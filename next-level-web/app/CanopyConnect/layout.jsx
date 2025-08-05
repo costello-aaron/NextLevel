@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ContactUsLayout({ children }) {
+export default function CanopyConnectLayout({ children }) {
     return (
         <div>
             <main>{children}</main>
