@@ -3,10 +3,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center">
         <Image
-          className="dark:invert"
-          src="/insurance-logo.svg"
+          className=""
+          src="/file.svg"
           alt="Insurance Agency Logo"
           width={180}
           height={38}
@@ -39,8 +39,9 @@ export default function Home() {
           href="/about-us"
         >
           <Image
+            className="dark:invert"
             aria-hidden
-            src="/info.svg"
+            src="/next.svg"
             alt="Info icon"
             width={16}
             height={16}
@@ -52,8 +53,9 @@ export default function Home() {
           href="/services"
         >
           <Image
+            className="dark:invert"
             aria-hidden
-            src="/services.svg"
+            src="/next.svg"
             alt="Services icon"
             width={16}
             height={16}
@@ -65,8 +67,9 @@ export default function Home() {
           href="/testimonials"
         >
           <Image
+            className="dark:invert"
             aria-hidden
-            src="/testimonials.svg"
+            src="/next.svg"
             alt="Testimonials icon"
             width={16}
             height={16}
