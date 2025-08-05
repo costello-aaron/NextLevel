@@ -16,12 +16,12 @@ const AboutUs = () => {
                         className="w-32 h-32 rounded-full shadow-lg mr-6"
                     />
                     <div>
-                        <h2 className="text-2xl font-semibold text-gray-800">John Doe</h2>
+                        <h2 className="text-2xl font-semibold text-gray-800">Chris Garcia</h2>
                         <p className="text-gray-600">
-                            Founder & CEO
+                            Job Title
                         </p>
                         <p className="text-gray-600 mt-2">
-                            John has over 20 years of experience in the insurance industry and is passionate about helping clients protect what matters most.
+                            Chris informational bio
                         </p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ const AboutUs = () => {
                 <div className="company-mission">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
                     <p className="text-gray-600">
-                        Our mission is to provide reliable and affordable insurance solutions while building lasting relationships with our clients. We strive to make the process simple and stress-free.
+                        Mission Statement
                     </p>
                 </div>
             </div>

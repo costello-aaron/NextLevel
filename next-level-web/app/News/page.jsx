@@ -1,53 +1,54 @@
-"use client";
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
 
-const News = () => {
-    const [newsArticles, setNewsArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
+export const dynamic = 'force-dynamic'; // optional: ensures fresh fetch on every request (disable caching)
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                const response = await fetch('https://newsapi.org/v2/everything?q=insurance&apiKey=YOUR_API_KEY');
-                const data = await response.json();
-                setNewsArticles(data.articles);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching news:', error);
-                setLoading(false);
-            }
-        };
+export default async function NewsPage() {
+  const apiKey = process.env.NEWSAPI_KEY;
+  const query = '("US insurance" OR "American insurance" OR "United States insurance")';
+  const url = `https://newsapi.org/v2/everything?q=${query}&language=en&pageSize=10&sortBy=relevancy&apiKey=${apiKey}`;
 
-        fetchNews();
-    }, []);
+  let articles = [];
+  let error = null;
 
-    return (
-        <div className="news-page bg-gray-100 min-h-screen py-10">
-            <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6">Recent Insurance News</h1>
-                {loading ? (
-                    <p className="text-gray-600">Loading news...</p>
-                ) : (
-                    <div className="news-articles space-y-6">
-                        {newsArticles.map((article, index) => (
-                            <div key={index} className="news-article border-b pb-4">
-                                <h2 className="text-xl font-semibold text-gray-800">{article.title}</h2>
-                                <p className="text-gray-600">{article.description}</p>
-                                <a
-                                    href={article.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-500 hover:underline"
-                                >
-                                    Read more
-                                </a>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
+  try {
+    const response = await axios.get(url);
+    articles = response.data.articles || [];
+  } catch (err) {
+    console.error('Error fetching news:', err);
+    error = 'Failed to load news';
+  }
 
-export default News;
+  return (
+    <div className="bg-gray-100 max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6 text-black">Latest News</h1>
+      {error && <p className="text-red-500">{error}</p>}
+      <div className="space-y-6">
+        {articles.map((article, idx) => (
+          <div
+            key={idx}
+            className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+          >
+            {article.urlToImage && (
+              <img
+                src={article.urlToImage}
+                alt={article.title}
+                className="w-full h-64 object-cover rounded mb-4 text-black"
+              />
+            )}
+            <h2 className="text-xl font-semibold text-black">{article.title}</h2>
+            <p className="text-gray-600 mt-2">{article.description}</p>
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 text-blue-600 hover:underline"
+            >
+              Read more →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
